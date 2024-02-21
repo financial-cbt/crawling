@@ -17,7 +17,7 @@ result = []
 for (let i = 0; i < file1Data.length; i++) {
     test = {
         num : file2Data[i].num,
-        question : file2Data[i].qeustion,
+        question : file2Data[i].question,
         option : file2Data[i].option,
         answer : file1Data[i].answer
     }
