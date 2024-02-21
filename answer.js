@@ -108,9 +108,5 @@ const nonQuizUrls = [
     // console.log(answers);
     console.log(answers.length);
 
-    const obj = answers.map((answer, i) => ({
-        answer : answer
-    }));
-    console.log(obj.length)
-    fs.writeFileSync("./data/answer.json", JSON.stringify(obj));
+    fs.writeFileSync("./data/answer.json", JSON.stringify(answers));
 })();
