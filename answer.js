@@ -1,7 +1,6 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
-
-import fs from "fs";
+const axios = require("axios");
+const cheerio = require("cheerio");
+const fs = require("fs");
 
 const circleNumbers = {
     "①": 1,
@@ -84,11 +83,20 @@ const getQuizzes = async (pageNum) => {
     return quizUrls;
 }
 
+const nonQuizUrls = [
+    "https://sgsg.hankyung.com/article/2024020294951",
+    "https://sgsg.hankyung.com/article/2023050552841",
+    "https://sgsg.hankyung.com/article/2023020329121",
+    "https://sgsg.hankyung.com/article/2023012768731"
+];
+
 (async () => {
     let quizUrls = [];
     for (let i = 1; i <= 10; i++) {
         quizUrls = quizUrls.concat(await getQuizzes(i));
     };
+
+    quizUrls = quizUrls.filter(url => !nonQuizUrls.includes(url));
 
     let answers = [];
     for (const quizUrl of quizUrls) {
@@ -96,6 +104,7 @@ const getQuizzes = async (pageNum) => {
     };
 
     console.log(answers);
+    console.log(answers.length);
 
     fs.writeFileSync("./answer.json", JSON.stringify(answers));
 })();

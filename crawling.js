@@ -93,25 +93,26 @@ async function fetchPageData() {
             a.shift()
             options = options.concat(a)
         }
+        // console.log(answers)
         console.log(questions.length);
         // console.log(questions)
         console.log(options.length);
-        // console.log(options)
+        console.log(options)
         
         // 객체 생성
         const obj = options.map((title, i) => ({
             num: i + 1,
             questions: questions[i],
-            options: options
+            options: title
         }));
 
         // console.log(obj)
 
         
-        // // json 파일 저장
-        // fs.writeFile( 'crolling2.json', JSON.stringify(obj), function(err) {
-        //     console.log( 'json파일 생성완료' );
-        // });
+        // json 파일 저장
+        fs.writeFile( 'quiz.json', JSON.stringify(obj), function(err) {
+            console.log( 'json파일 생성완료' );
+        });
 
     } catch (err) {
         console.error(err);
