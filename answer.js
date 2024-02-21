@@ -87,7 +87,9 @@ const nonQuizUrls = [
     "https://sgsg.hankyung.com/article/2024020294951",
     "https://sgsg.hankyung.com/article/2023050552841",
     "https://sgsg.hankyung.com/article/2023020329121",
-    "https://sgsg.hankyung.com/article/2023012768731"
+    "https://sgsg.hankyung.com/article/2023012768731",
+    "https://sgsg.hankyung.com/article/2022090263511",
+    "https://sgsg.hankyung.com/article/2022071507801"
 ];
 
 (async () => {
@@ -103,8 +105,12 @@ const nonQuizUrls = [
         answers = answers.concat(await getAnswers(quizUrl));
     };
 
-    console.log(answers);
+    // console.log(answers);
     console.log(answers.length);
 
-    fs.writeFileSync("./answer.json", JSON.stringify(answers));
+    const obj = answers.map((answer, i) => ({
+        answer : answer
+    }));
+    console.log(obj.length)
+    fs.writeFileSync("./data/answer.json", JSON.stringify(obj));
 })();

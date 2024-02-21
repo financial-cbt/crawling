@@ -34,7 +34,7 @@ async function fetchPageData() {
         let questions = []
         let options = []
         for (let i = 0; i < 80; i++) {
-            if(i === 1 | i === 36 | i === 49 | i === 50) {
+            if(i === 1 | i === 36 | i === 49 | i === 50 | i === 68 | i === 73) {
                 continue;
             }
             const url = urls[i];
@@ -93,24 +93,24 @@ async function fetchPageData() {
             a.shift()
             options = options.concat(a)
         }
-        // console.log(answers)
+
         console.log(questions.length);
         // console.log(questions)
         console.log(options.length);
-        console.log(options)
+        // console.log(options)
         
         // 객체 생성
         const obj = options.map((title, i) => ({
             num: i + 1,
-            questions: questions[i],
-            options: title
+            question: questions[i],
+            option: title
         }));
 
         // console.log(obj)
 
         
         // json 파일 저장
-        fs.writeFile( 'quiz.json', JSON.stringify(obj), function(err) {
+        fs.writeFile( './data/quiz.json', JSON.stringify(obj), function(err) {
             console.log( 'json파일 생성완료' );
         });
 
