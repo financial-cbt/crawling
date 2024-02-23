@@ -44,9 +44,41 @@ async function fetchArticle(url) {
     }
 }
 
+// const getBody = ($) => {
+//     const paragraphs = [];
+//     let currentParagraph = "";
+//     let brNum = 0;
+
+//     $(".article-body").contents().each(function () {
+//         // 텍스트 노드인 경우
+//         if (this.nodeType === 3) {
+//             brNum--;
+//             const text = $(this).text().trim();
+//             if (text !== "") {
+//                 currentParagraph += text + " ";
+//             }
+//         } else if (this.nodeType === 1) {
+//             brNum++;
+//             if (brNum === 2) {
+//                 brNum = 0;
+//                 if (currentParagraph !== "") {
+//                     paragraphs.push(currentParagraph.trim());
+//                     currentParagraph = "";
+//                 }
+//             }
+//         }
+//     });
+
+//     // 마지막 문단 추가
+//     if (currentParagraph !== "") {
+//         paragraphs.push(currentParagraph.trim());
+//     }
+
+//     return paragraphs;
+// };
+
 const getBody = ($) => {
-    const paragraphs = [];
-    let currentParagraph = "";
+    let paragraph = "";
     let brNum = 0;
 
     $(".article-body").contents().each(function () {
@@ -55,28 +87,13 @@ const getBody = ($) => {
             brNum--;
             const text = $(this).text().trim();
             if (text !== "") {
-                currentParagraph += text + " ";
-            }
-        } else if (this.nodeType === 1) {
-            brNum++;
-            if (brNum === 2) {
-                brNum = 0;
-                if (currentParagraph !== "") {
-                    paragraphs.push(currentParagraph.trim());
-                    currentParagraph = "";
-                }
+                paragraph += text + " ";
             }
         }
     });
 
-    // 마지막 문단 추가
-    if (currentParagraph !== "") {
-        paragraphs.push(currentParagraph.trim());
-    }
-
-    return paragraphs;
+    return paragraph;
 };
-
 
 const getArticle = async (url, inx) => {
     const html = await fetchArticle(url);
@@ -127,7 +144,7 @@ https://www.hankyung.com/article/202401038232Y
 윈도드레싱
 공포지수
 
-https://magazine.hankyung.com/money/article/202310187017c
+https://www.hankyung.com/article/2023092436581
 달러인덱스
 인플레이션
 모라토리엄
