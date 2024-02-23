@@ -86,7 +86,7 @@ const getArticle = async (url, inx) => {
     const body = getBody($);
     const date = $(".txt-date").text().trim();
     const reporter = $("meta[property='dable:author']").attr("content");
-    const photoUrl = $("figure-img img").prop("src");
+    const photoUrl = $(".figure-img img").prop("src");
 
     const article = {
         num: inx,
