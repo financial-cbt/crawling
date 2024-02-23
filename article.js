@@ -95,6 +95,7 @@ const getArticle = async (url, inx) => {
         date: date,
         reporter: reporter,
         photoUrl: photoUrl,
+        word: [],
     };
 
     return article;
