@@ -28,11 +28,15 @@ getData();
 //     });
 // };
 const makeWord = (articles, dictionary) => {
+    const indexes = [];
+
     articles.forEach((article) => {
         article.word = []
         dictionary.forEach((entry) => {
             const index = article.body.indexOf(entry.term);
-            if (index !== -1) {
+            if (indexes.indexOf(entry.term) === -1 && index !== -1) {
+                indexes.push(index);
+
                 const w = {
                     start: index,
                     end: index + entry.term.length,
