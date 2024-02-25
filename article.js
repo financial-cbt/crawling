@@ -44,39 +44,54 @@ async function fetchArticle(url) {
     }
 }
 
+// const getBody = ($) => {
+//     const paragraphs = [];
+//     let currentParagraph = "";
+//     let brNum = 0;
+
+//     $(".article-body").contents().each(function () {
+//         // 텍스트 노드인 경우
+//         if (this.nodeType === 3) {
+//             brNum--;
+//             const text = $(this).text().trim();
+//             if (text !== "") {
+//                 currentParagraph += text + " ";
+//             }
+//         } else if (this.nodeType === 1) {
+//             brNum++;
+//             if (brNum === 2) {
+//                 brNum = 0;
+//                 if (currentParagraph !== "") {
+//                     paragraphs.push(currentParagraph.trim());
+//                     currentParagraph = "";
+//                 }
+//             }
+//         }
+//     });
+
+//     // 마지막 문단 추가
+//     if (currentParagraph !== "") {
+//         paragraphs.push(currentParagraph.trim());
+//     }
+
+//     return paragraphs;
+// };
+
 const getBody = ($) => {
-    const paragraphs = [];
-    let currentParagraph = "";
-    let brNum = 0;
+    let body = "";
 
     $(".article-body").contents().each(function () {
         // 텍스트 노드인 경우
         if (this.nodeType === 3) {
-            brNum--;
             const text = $(this).text().trim();
             if (text !== "") {
-                currentParagraph += text + " ";
-            }
-        } else if (this.nodeType === 1) {
-            brNum++;
-            if (brNum === 2) {
-                brNum = 0;
-                if (currentParagraph !== "") {
-                    paragraphs.push(currentParagraph.trim());
-                    currentParagraph = "";
-                }
+                body += text + " ";
             }
         }
     });
 
-    // 마지막 문단 추가
-    if (currentParagraph !== "") {
-        paragraphs.push(currentParagraph.trim());
-    }
-
-    return paragraphs;
+    return body;
 };
-
 
 const getArticle = async (url, inx) => {
     const html = await fetchArticle(url);
