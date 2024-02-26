@@ -16,12 +16,21 @@ const getData = () => {
 getData();
 
 const makeDictionary = () => {
+    const checkTerm = [];
+
     if (commentaries.length === terms.length) {
         dictionary = terms
             .map((term, index) => ({ term, commentary: commentaries[index] }))
-            .filter(item => item.commentary !== 'pass');
+            .filter(item => {
+                if (checkTerm.includes(item.term) || item.commentary === 'pass') {
+                    return false;
+                } else {
+                    checkTerm.push(item.term);
+                    return true;
+                }
+            });
 
-        console.log(dictionary);
+        // console.log(dictionary);
         console.log(dictionary.length);
     } else {
         console.log("주어진 입력 배열의 길이가 서로 다릅니다.");
