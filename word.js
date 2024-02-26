@@ -34,9 +34,10 @@ const makeWord = (articles, dictionary) => {
         article.word = []
         dictionary.forEach((entry) => {
             const index = article.body.indexOf(entry.term);
-            if (indexes.indexOf(entry.term) === -1 && index !== -1) {
+            console.log(indexes, index)
+            if (indexes.indexOf(index) === -1 && index !== -1) {
+                console.log("push");
                 indexes.push(index);
-
                 const w = {
                     start: index,
                     end: index + entry.term.length,
